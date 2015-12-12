@@ -4,9 +4,9 @@ describe('Category API', function(){
   var server
   var Category
 
-  before(function)
+  before(function(){
     var app = express()
-    models = require('./models')(wagner))
+    models = require('./models')(wagner)
     app.use(require('./api')(wagner))
 
     server.listen(3000)
@@ -17,9 +17,10 @@ describe('Category API', function(){
   after(function(){
     server.close()
     beforeEach(function(done){
-      Category.remove({, function(e)
+      Category.remove({}, function(e){
       assert.ifError(e)
       done()
+    })
     })
   })
   it('can load a category by id', function(done){
@@ -61,5 +62,4 @@ describe('Category API', function(){
       })
     })
   })
-
 })
